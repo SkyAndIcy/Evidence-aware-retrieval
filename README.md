@@ -40,32 +40,6 @@ $\tau_{cov}$), which already captures the dominant gain.
 
 ---
 
-## Repository layout
-
-```
-run.py                       CLI entry point
-core/                        abstract interfaces + concrete gateway/retriever
-  base.py  exceptions.py  cache.py  tools.py  llm.py  retriever.py
-data/                        dataset loaders (HotpotQA, MuSiQue, ...)
-methods/                     agent implementations (depend only on core interfaces)
-  baselines.py  eara.py  eara_v4.py
-prompts/                     prompt constants, decoupled from control flow
-  baselines_prompts.py  eara_prompts.py  eara_v4_prompts.py
-evaluation/                  Coverage@Acc, AUROC, abstention rate, cost
-analysis/                    extended analyses (case-study, falcon, noise)
-utils/
-tools/                       scrub_appids.py — leak check before repackaging
-tests/                       import smoke tests + metric unit tests
-config.yaml                  template config (placeholders for gateway/AppId)
-pyproject.toml  requirements.txt  LICENSE
-```
-
-The methods layer depends only on the abstract `BaseLLM` / `BaseRetriever`
-interfaces in `core/base.py`, so agents stay decoupled from any specific API
-client or retrieval backend.
-
----
-
 ## Setup
 
 **1. Install.**
