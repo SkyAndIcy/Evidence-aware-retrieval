@@ -37,40 +37,40 @@ with a single same-model self-judge sufficiency score (threshold $\tau_{cov}$).
 ## Repository layout
 
 ```
-run.py                       CLI entry point: --model --benchmark --method --n --workers
-core/                        core abstractions (interface + implementation split)
-  base.py                    abstract BaseLLM / BaseRetriever contracts
-  exceptions.py              SafetyViolation, RateLimitExhausted
-  cache.py                   in-process response cache + ${ENV} resolution + call hashing
-  tools.py                   OpenAI function-calling tool schemas + normalization
-  llm.py                     concrete LLM (OpenAI-compatible gateway, AppId-pool round-robin)
-  retriever.py               concrete Retriever (BM25) + Passage dataclass
+run.py
+core/
+  base.py
+  exceptions.py
+  cache.py
+  tools.py
+  llm.py
+  retriever.py
 data/
-  datasets.py                loaders for HotpotQA, MuSiQue, MuSiQue-2hop, ...
-methods/                     agent implementations (depend only on core interfaces)
-  baselines.py               Direct / RAG / Self-Ask / CRAG / ReAct / IRCoT / Con
-  eara.py                    EARA (three-signal CRP + CAC, general framework)
-  eara_v4.py                 EARA-v4 + eara_ircot (single-signal self-judge instantiation, main config)
-prompts/                     centralized prompt constants (decoupled from control flow)
-  baselines_prompts.py       ReAct / RAG / Direct / Self-Ask / CRAG / Con prompts
-  eara_prompts.py            decompose / rewrite / monitor / answer / self-consistency prompts
-  eara_v4_prompts.py         evidence-sufficiency (coverage) judge prompt
+  datasets.py
+methods/
+  baselines.py
+  eara.py
+  eara_v4.py
+prompts/
+  baselines_prompts.py
+  eara_prompts.py
+  eara_v4_prompts.py
 evaluation/
-  metrics.py                 Coverage@Acc, AUROC, abstention rate, cost summary
-analysis/                    extended analyses
-  case_agent.py              case-study agent (optional)
-  falcon.py                  falcon baseline (optional)
-  noise.py                   retrieval-noise utilities (optional)
-utils/                       shared utilities
+  metrics.py
+analysis/
+  case_agent.py
+  falcon.py
+  noise.py
+utils/
 tools/
-  scrub_appids.py            verify no AppIds leak in config before repackaging
+  scrub_appids.py
 tests/
-  test_imports.py            package import smoke tests (post-refactor integrity)
-  test_metrics.py            unit tests for Coverage@Acc / accuracy / normalization
-config.yaml                  template config (AppIds / gateway URL are placeholders)
-pyproject.toml               project metadata, dependencies, pytest config
-requirements.txt             pip requirements (mirror of pyproject dependencies)
-LICENSE                      MIT
+  test_imports.py
+  test_metrics.py
+config.yaml
+pyproject.toml
+requirements.txt
+LICENSE
 ```
 
 The methods layer depends only on the abstract `BaseLLM` / `BaseRetriever`
