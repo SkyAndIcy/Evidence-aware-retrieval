@@ -1,0 +1,30 @@
+extends: paper.yaml
+study:
+  name: synthetic_live_smoke_not_paper_results
+  profile: diagnostic_only
+  inference_seeds: [17]
+execution:
+  max_api_requests_per_run: 60
+  max_completion_tokens: 768
+  max_generated_tokens_per_question: 8192
+  per_question_seconds: 240
+retrieval:
+  corpus_db: experiments/data/smoke/passages.sqlite
+  corpus_identity: synthetic_smoke_not_wikipedia
+  bm25_index: experiments/indexes/smoke_bm25s
+roles:
+  generator: gpt4o_mini
+  planner: gpt4o_mini
+  reviewer: frontier
+eara:
+  requested_subquestions: 2
+  plan_cache: experiments/data/smoke/plans
+datasets:
+  synthetic:
+    input: experiments/fixtures/questions.jsonl
+    dev: 2
+    test: 0
+splits:
+  directory: experiments/data/smoke/splits
+output:
+  runs: experiments/runs/smoke

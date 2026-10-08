@@ -1,0 +1,562 @@
+[
+  {
+    "id": "rag_CRP0CAC0",
+    "method": "rag",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "one-shot retrieved-context generation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "rag_CRP1CAC0",
+    "method": "rag",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "one-shot retrieved-context generation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "rag_CRP0CAC1",
+    "method": "rag",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "one-shot retrieved-context generation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "rag_CRP1CAC1",
+    "method": "rag",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "one-shot retrieved-context generation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "self_ask_CRP0CAC0",
+    "method": "self_ask",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "follow-up-question JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "self_ask_CRP1CAC0",
+    "method": "self_ask",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "follow-up-question JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "self_ask_CRP0CAC1",
+    "method": "self_ask",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "follow-up-question JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "self_ask_CRP1CAC1",
+    "method": "self_ask",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "follow-up-question JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "crag_local_CRP0CAC0",
+    "method": "crag_local",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "corpus-constrained corrective retrieval adaptation, not original web-search CRAG",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "crag_local_CRP1CAC0",
+    "method": "crag_local",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "corpus-constrained corrective retrieval adaptation, not original web-search CRAG",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "crag_local_CRP0CAC1",
+    "method": "crag_local",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "corpus-constrained corrective retrieval adaptation, not original web-search CRAG",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "crag_local_CRP1CAC1",
+    "method": "crag_local",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "corpus-constrained corrective retrieval adaptation, not original web-search CRAG",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "react_CRP0CAC0",
+    "method": "react",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "reason/action JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "react_CRP1CAC0",
+    "method": "react",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "reason/action JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "react_CRP0CAC1",
+    "method": "react",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "reason/action JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "react_CRP1CAC1",
+    "method": "react",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "reason/action JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "ircot_CRP0CAC0",
+    "method": "ircot",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "interleaved reasoning/retrieval JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "ircot_CRP1CAC0",
+    "method": "ircot",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "interleaved reasoning/retrieval JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "ircot_CRP0CAC1",
+    "method": "ircot",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "interleaved reasoning/retrieval JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "ircot_CRP1CAC1",
+    "method": "ircot",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "interleaved reasoning/retrieval JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_o1_CRP0CAC0",
+    "method": "search_o1",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "fixed-backbone search-tag and reason-in-documents adaptation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_o1_CRP1CAC0",
+    "method": "search_o1",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "fixed-backbone search-tag and reason-in-documents adaptation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_o1_CRP0CAC1",
+    "method": "search_o1",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "fixed-backbone search-tag and reason-in-documents adaptation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_o1_CRP1CAC1",
+    "method": "search_o1",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "fixed-backbone search-tag and reason-in-documents adaptation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "tir_CRP0CAC0",
+    "method": "tir",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": null,
+    "blocked_reason": "TIR paper/code identity is unresolved",
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "tir_CRP1CAC0",
+    "method": "tir",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": null,
+    "blocked_reason": "TIR paper/code identity is unresolved",
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "tir_CRP0CAC1",
+    "method": "tir",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": null,
+    "blocked_reason": "TIR paper/code identity is unresolved",
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "tir_CRP1CAC1",
+    "method": "tir",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": null,
+    "blocked_reason": "TIR paper/code identity is unresolved",
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_r1_CRP0CAC0",
+    "method": "search_r1",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_r1_CRP1CAC0",
+    "method": "search_r1",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_r1_CRP0CAC1",
+    "method": "search_r1",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_r1_CRP1CAC1",
+    "method": "search_r1",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_base_CRP0CAC0",
+    "method": "zerosearch_base",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_base_CRP1CAC0",
+    "method": "zerosearch_base",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_base_CRP0CAC1",
+    "method": "zerosearch_base",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_base_CRP1CAC1",
+    "method": "zerosearch_base",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_instruct_CRP0CAC0",
+    "method": "zerosearch_instruct",
+    "family": "transfer",
+    "crp": false,
+    "cac": false,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_instruct_CRP1CAC0",
+    "method": "zerosearch_instruct",
+    "family": "transfer",
+    "crp": true,
+    "cac": false,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_instruct_CRP0CAC1",
+    "method": "zerosearch_instruct",
+    "family": "transfer",
+    "crp": false,
+    "cac": true,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_instruct_CRP1CAC1",
+    "method": "zerosearch_instruct",
+    "family": "transfer",
+    "crp": true,
+    "cac": true,
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  }
+]

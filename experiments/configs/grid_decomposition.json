@@ -1,0 +1,434 @@
+[
+  {
+    "id": "qwen_plus_m1",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "subquestions": 1,
+    "decompose": false,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_m2",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "subquestions": 2,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_m3",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "subquestions": 3,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_m4",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "subquestions": 4,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_m6",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "subquestions": 6,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_madaptive",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "subquestions": "adaptive",
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_m1",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "subquestions": 1,
+    "decompose": false,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_m2",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "subquestions": 2,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_m3",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "subquestions": 3,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_m4",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "subquestions": 4,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_m6",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "subquestions": 6,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_madaptive",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "subquestions": "adaptive",
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_m1",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "subquestions": 1,
+    "decompose": false,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_m2",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "subquestions": 2,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_m3",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "subquestions": 3,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_m4",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "subquestions": 4,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_m6",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "subquestions": 6,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_madaptive",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "subquestions": "adaptive",
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_m1",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "kimi",
+    "planner": "kimi",
+    "subquestions": 1,
+    "decompose": false,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_m2",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "kimi",
+    "planner": "kimi",
+    "subquestions": 2,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_m3",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "kimi",
+    "planner": "kimi",
+    "subquestions": 3,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_m4",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "kimi",
+    "planner": "kimi",
+    "subquestions": 4,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_m6",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "kimi",
+    "planner": "kimi",
+    "subquestions": 6,
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_madaptive",
+    "method": "eara",
+    "family": "decomposition",
+    "generator": "kimi",
+    "planner": "kimi",
+    "subquestions": "adaptive",
+    "decompose": true,
+    "crp": true,
+    "cac": true,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  }
+]

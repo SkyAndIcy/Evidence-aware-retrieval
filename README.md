@@ -1,132 +1,108 @@
-# EARA: Evidence-Aware Retrieval Agents
+# EARA: Evidence-Aware Retrieval and Abstention for Multi-Hop QA
 
-EARA is a training-free framework that makes retrieval-augmented LLM agents
-**evidence-aware**: they can tell whether the retrieved evidence is enough to
-answer, retrieve more when it is not, and **abstain** honestly when it still
-isn't — instead of hallucinating a confident wrong answer.
+**EARA** is a modular framework that separates *information acquisition* from
+*answer release* in retrieval-augmented agents:
 
----
+- **CRP — Controllable Retrieval Process.** Decomposes the question into a
+  directed list of evidence-seeking sub-questions with explicit dependencies,
+  schedules an unresolved sub-question against the accumulated evidence, and
+  rewrites each query using only retrieved support (never injected facts).
+- **CAC — Calibrated Abstention Controller.** At every answer proposal, a
+  reviewer scores whether the displayed evidence fully supports the candidate —
+  every required multi-hop link — and the controller chooses **answer**,
+  **retrieve-more**, or **abstain** (Eq. 2 of the paper).
 
-## Why EARA?
+The two components expose separate interfaces, so each can be attached to a
+retrieval-capable host agent without replacing its answer generator, and their
+effects are measured with the factorial gains Δ_C, Δ_A, and interaction
+(Eq. 3–4).
 
-Current retrieval agents (ReAct, RAG, Self-Ask, …) suffer two failures:
+> **Status.** This repository accompanies an anonymous submission under
+> double-blind review. It is the *implementation* of the evaluation protocol:
+> the controller, retrieval stack, grids, audit tooling, and offline
+> validation. It contains **no fabricated results** — result cells appear only
+> when runs actually execute, and `python -m experiments.eara capabilities`
+> prints an honest inventory of what is and is not implemented.
 
-1. **Black-box retrieval.** The agent fires a query and consumes whatever
-   comes back. It has no notion of whether the evidence is *sufficient*.
-2. **No abstention.** Even when evidence is missing or contradictory, the
-   agent is forced to answer — producing overconfident, wrong answers that a
-   user cannot distinguish from correct ones.
+## Repository layout
 
-EARA adds an **evidence-sufficiency gate** on top of ReAct-style retrieval.
-A judge scores whether the gathered evidence supports the proposed answer;
-low scores trigger one more retrieval round, and persistently low scores
-trigger abstention. This turns the open-loop *retrieve-then-answer* pipeline
-into a closed-loop *monitor-then-decide* controller.
-
----
-
-## How it works
-
-EARA has two co-dependent components:
-
-| Component | Role |
-|---|---|
-| **CRP** — Controllable Retrieval Process | Decomposes the question into sub-queries, rewrites each query against the current evidence state, retrieves via BM25, and maintains an explicit evidence state $E_t = (c_t, \delta_t, \kappa_t)$ — coverage, conflict, credibility. |
-| **CAC** — Calibrated Abstention Controller | Reads $E_t$ at every step and chooses one of: **answer**, **retrieve-more**, or **abstain**, via a conjunction of evidence-sufficiency and self-consistency thresholds. |
-
-The three-signal CAC is the general framework. The experiments instantiate it
-with a single **same-model self-judge** sufficiency score (one threshold
-$\tau_{cov}$), which already captures the dominant gain.
-
----
-
-## Setup
-
-**1. Install.**
-
-```bash
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
+```
+experiments/
+  eara/                    the framework package
+    agents.py              CRP planning/rewrite/scheduling + CAC gate + host adapters
+                           (ReAct, Self-Ask, IRCoT, CRAG-local, Search-o1, tagged
+                           search-R1/ZeroSearch adapters, direct/CoT)
+    retrieval.py           BM25s index build, exact dense (BGE-M3) index,
+                           weighted reciprocal-rank fusion (11 mixture settings)
+    data.py                DPR-style 2018-Wikipedia corpus import,
+                           five dataset normalizers, frozen dev/test splits
+    runner.py              grid construction, resumable runs, run fingerprints
+    metrics.py             EM/F1, coverage, selective accuracy, yield,
+                           paired cluster bootstrap, transfer effects (Eq. 3-4)
+    audit.py               frozen-tuple export, model labeling, blind human
+                           audit sampling, kappa/macro-F1, threshold calibration
+    gateway.py             concurrency caps, 429 cooldown (no key rotation),
+                           request ledger, secret redaction
+    protocol.py            protocol guards + capability inventory
+  configs/                 paper.yaml + the experiment grids
+                           (main, decomposition, planner_crossed, rewriting,
+                           rewriting_control, retrieval, transfer)
+  validate_framework.py    end-to-end offline validation (synthetic corpus +
+                           real BM25s + mock transport)
+  test_controller_contract.py   17 unit tests for the controller contract
+  serve_qwen.sh            local Qwen3-8B / Qwen3-4B serving helpers
+  credentials.example.yaml gateway credential template (never commit real keys)
+  fixtures/                tiny synthetic corpus used by the validator
 ```
 
-**2. Configure the gateway.** The framework talks to any OpenAI-compatible
-LLM gateway. Set its URL and your AppId(s) as environment variables (the
-template `config.yaml` references them as `${LLM_GATEWAY_URL}` and
-`${LLM_APPID}`):
+## Quick start
 
 ```bash
-export LLM_GATEWAY_URL="https://your-gateway/v1/openai/native"
-export LLM_APPID="your-app-id"          # space-separated list enables pooling
+python -m venv .venv && source .venv/bin/activate
+pip install -r experiments/requirements.txt
+
+# honest inventory of implemented vs. unimplemented capabilities
+python -m experiments.eara capabilities
+
+# end-to-end offline validation: synthetic corpus, real BM25s, mock LLM
+PYTHONPATH=. python experiments/validate_framework.py
+
+# controller contract tests
+PYTHONPATH=. python experiments/test_controller_contract.py
 ```
 
-Alternatively, edit `config.yaml` and replace the `${...}` placeholders
-directly (never commit real AppIds).
-
-**3. Datasets.** HotpotQA and MuSiQue load via the HuggingFace `datasets`
-cache (the loader falls back to the latest cached version offline).
-MuSiQue-2hop is the 2-hop subset of MuSiQue. The BM25 index is built from
-the distractor + supporting passages of each benchmark.
-
----
-
-## Reproducing the results
-
-The main table compares `eara_ircot_tau03` (self-judge sufficiency gate,
-`tau_cov=0.3`, `T=10` retrieval steps) against five baselines on **four LLM
-backbones** × **three benchmarks**.
-
-**Run one configuration:**
+Real runs additionally require (all supplied externally, none included here):
+the December-2018 English Wikipedia passage corpus, the five benchmark source
+files, model endpoints, and human audit annotations.
 
 ```bash
-python -m run --config config.yaml --model <model> \
-  --benchmark <benchmark> --method eara_ircot_tau03 --n <n> --workers <workers>
+python -m experiments.eara doctor          # readiness report, zero API calls
+
+# data pipeline
+python -m experiments.eara download-corpus --output psgs_w100.tsv.gz --max-gib 5
+python -m experiments.eara import-corpus --input psgs_w100.tsv.gz
+python -m experiments.eara index-bm25
+python -m experiments.eara normalize-dataset --name hotpotqa --input ... --source-url ...
+python -m experiments.eara freeze-splits
+
+# experiments (add --confirm-api-use to authorize billable requests)
+python -m experiments.eara make-grid --family main --output main.json
+python -m experiments.eara run --grid main.json --condition-id eara --mode pilot --limit 50
 ```
 
-Results go to `results/{model}_{benchmark}_{method}.jsonl` plus a matching
-`_summary.json` (Coverage@Acc, accuracy, abstention rate, AUROC, avg
-retrievals, token cost). Sweep the model/benchmark/method flags to cover the
-full table.
+## Protocol guarantees enforced in code
 
-**Ablation.** `eara_ircot_noab` isolates the retrieve-more loop: the gate
-still triggers extra retrieval, but the agent never abstains (it commits a
-best guess at budget exhaustion). Comparing `react` → `eara_ircot_noab` →
-`eara_ircot_tau03` decomposes the gain into retrieve-more and abstention
-contributions.
+- Main comparison: shared 2018 Wikipedia corpus, BM25s, top-5 retrieval,
+  10 logical retrieval calls per question (cached queries still count).
+- One candidate per proposal; one format-only retry, then abstention.
+- Paper mode refuses to run without a development-selected, closed-loop
+  validated threshold artifact and frozen model revisions.
+- Unimplemented configurations fail loudly instead of silently degrading
+  (e.g., five-sample self-consistency, TIR, unresolved checkpoints).
+- Hard-limit terminations, abstention reasons, and infrastructure failures
+  are reported separately, never silently dropped.
+- Every request is logged to a redacted ledger; secrets never enter records.
 
-**Calibration.** The `eara_ircot_tau0*` sweep produces Coverage@Acc / AUROC
-/ Accuracy curves as a function of $\tau_{cov}$. Coverage@Acc is flat across
-$\tau \in [0.1, 0.5]$, so $\tau_{cov}=0.3$ is a stable operating point.
+## License
 
----
-
-## Key metrics
-
-| Metric | Definition |
-|---|---|
-| **Coverage@Acc** | Accuracy on the answered subset (abstentions excluded). Primary metric. |
-| **Accuracy** | Overall accuracy (abstentions counted as incorrect). |
-| **Abstention rate** | Fraction of questions withheld. |
-| **AUROC** | How well the abstention decision separates wrong from right answers. |
-| **Avg retrievals** | Mean retrieval calls per question. |
-
-Implementation in `evaluation/metrics.py`.
-
----
-
-## Notes
-
-- `tools/scrub_appids.py --check` verifies no AppIds remain in `config.yaml`
-  before repackaging.
-- Temperature: 0.6 for the main agent loop where the API supports it; 0 for
-  deterministic evaluation prompts. Reasoning models that force a specific
-  temperature are handled in `core/llm.py`.
-- All models are accessed as black-box APIs; no model weights are used or
-  modified.
-- Run `python -m pytest tests/` to verify import integrity and metric
-  correctness after any change.
-
----
-
-## Citation
-
-This is an anonymous submission. The citation will be added upon acceptance.
+MIT (anonymous submission; see LICENSE).

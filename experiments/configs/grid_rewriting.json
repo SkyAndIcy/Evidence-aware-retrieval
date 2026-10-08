@@ -1,0 +1,306 @@
+[
+  {
+    "id": "qwen_plus_D0W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": false,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_D0W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": true,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_D1W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": false,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "qwen_plus_D1W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "qwen_plus",
+    "planner": "qwen_plus",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": true,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_D0W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": false,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_D0W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": true,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_D1W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": false,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gemini_flash_D1W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gemini_flash",
+    "planner": "gemini_flash",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": true,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_D0W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": false,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_D0W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": true,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_D1W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": false,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "gpt4o_mini_D1W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "gpt4o_mini",
+    "planner": "gpt4o_mini",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": true,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_D0W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "kimi",
+    "planner": "kimi",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": false,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_D0W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "kimi",
+    "planner": "kimi",
+    "crp": true,
+    "cac": true,
+    "decompose": false,
+    "rewrite": true,
+    "subquestions": 1,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_D1W0",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "kimi",
+    "planner": "kimi",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": false,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "kimi_D1W1",
+    "method": "eara",
+    "family": "rewriting",
+    "generator": "kimi",
+    "planner": "kimi",
+    "crp": true,
+    "cac": true,
+    "decompose": true,
+    "rewrite": true,
+    "subquestions": 3,
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  }
+]

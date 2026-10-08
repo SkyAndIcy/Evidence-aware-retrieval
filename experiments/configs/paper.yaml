@@ -1,0 +1,187 @@
+schema_version: 1
+study:
+  name: eara_www2027
+  profile: protocol_pending_calibration
+  selection_seed: 17
+  inference_seeds: [17, 29, 43]
+  credentials_file_env: FRIDAY_CONFIG
+execution:
+  api_concurrency: 20
+  question_workers: 20
+  retrieval_workers: 2
+  max_api_requests_per_run: 1000
+  request_timeout_seconds: 90
+  per_question_seconds: 600
+  max_controller_turns: 64
+  max_generated_tokens_per_question: 16384
+  max_completion_tokens: 2048
+  format_retries: 1
+  temperature: 0.0
+  transient_retries: 0
+  max_infrastructure_attempts_per_question: 2
+retrieval:
+  corpus_db: experiments/data/wikipedia2018/passages.sqlite
+  corpus_identity: dpr_december_2018_wikipedia_psgs_w100
+  corpus_download_url: https://dl.fbaipublicfiles.com/dpr/wikipedia_split/psgs_w100.tsv.gz
+  bm25_index: experiments/indexes/wikipedia2018_bm25s
+  dense_index: experiments/indexes/wikipedia2018_bge_m3
+  top_k: 5
+  logical_budget: 10
+  candidate_depth: 100
+  backend: bm25
+  lexical_weight: 10
+  dense_weight: 0
+  rrf_constant: 60
+  bm25:
+    method: lucene
+    k1: 1.5
+    b: 0.75
+    stopwords: english
+    stemmer: english
+  dense:
+    model: BAAI/bge-m3
+    revision: null
+    batch_size: 16
+    scan_batch_size: 16384
+  evidence_max_passages: 30
+  evidence_max_characters_per_passage: 2400
+models:
+  main_generator:
+    transport: local
+    endpoint_env: EARA_GENERATOR_BASE_URL
+    api_key_env: EARA_GENERATOR_API_KEY
+    revision_env: EARA_GENERATOR_REVISION
+    model: Qwen3-8B
+    seed_supported: true
+    request_options:
+      chat_template_kwargs:
+        enable_thinking: false
+  frontier:
+    transport: friday
+    alias: gpt-4.1
+    revision: gpt-4.1-2025-04-14
+  small_reviewer:
+    transport: local
+    endpoint_env: EARA_SMALL_BASE_URL
+    api_key_env: EARA_SMALL_API_KEY
+    revision_env: EARA_SMALL_REVISION
+    model: Qwen3-4B
+    seed_supported: true
+    request_options:
+      chat_template_kwargs:
+        enable_thinking: false
+  gpt4o_mini:
+    transport: friday
+    alias: gpt-4o-mini
+    revision: gpt-4o-mini-2024-07-18
+  qwen_plus:
+    transport: friday
+    alias: qwen-plus-latest
+    revision: null
+  gemini_flash:
+    transport: friday
+    alias: gemini-2.5-flash
+    revision: null
+  kimi:
+    transport: friday
+    alias: kimi-k3
+    revision: null
+    temperature: 1.0
+    protocol_change: replaces_paper_kimi_k2_5_requires_disclosure
+  search_r1:
+    transport: local
+    endpoint_env: EARA_SEARCH_R1_BASE_URL
+    api_key_env: EARA_SEARCH_R1_API_KEY
+    revision_env: EARA_SEARCH_R1_REVISION
+    model: Search-R1
+  zerosearch_base:
+    transport: local
+    endpoint_env: EARA_ZEROSEARCH_BASE_URL
+    api_key_env: EARA_ZEROSEARCH_API_KEY
+    revision_env: EARA_ZEROSEARCH_REVISION
+    model: ZeroSearch-base
+  zerosearch_instruct:
+    transport: local
+    endpoint_env: EARA_ZEROSEARCH_INSTRUCT_BASE_URL
+    api_key_env: EARA_ZEROSEARCH_INSTRUCT_API_KEY
+    revision_env: EARA_ZEROSEARCH_INSTRUCT_REVISION
+    model: ZeroSearch-instruct
+  r1_base:
+    transport: local
+    endpoint_env: EARA_R1_BASE_URL
+    api_key_env: EARA_R1_BASE_API_KEY
+    revision_env: EARA_R1_BASE_REVISION
+    model: R1-base
+    protocol_change: exact_checkpoint_identity_unresolved
+  r1_instruct:
+    transport: local
+    endpoint_env: EARA_R1_INSTRUCT_BASE_URL
+    api_key_env: EARA_R1_INSTRUCT_API_KEY
+    revision_env: EARA_R1_INSTRUCT_REVISION
+    model: R1-instruct
+    protocol_change: exact_checkpoint_identity_unresolved
+roles:
+  generator: main_generator
+  planner: main_generator
+  reviewer: frontier
+  small_reviewer: small_reviewer
+eara:
+  decompose: true
+  rewrite: true
+  cac: true
+  requested_subquestions: adaptive
+  adaptive_max: 6
+  threshold_artifact: null
+  pilot_threshold: 0.5
+  plan_cache: experiments/data/plans
+  candidate_samples: 1
+calibration:
+  risk_target: 0.05
+  minimum_accepted: 30
+  confidence: 0.95
+  threshold_grid: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+  label_source: adjudicated_human
+datasets:
+  hotpotqa:
+    input: experiments/data/normalized/hotpotqa.jsonl
+    dev: 500
+    test: 1000
+  2wikimultihopqa:
+    input: experiments/data/normalized/2wikimultihopqa.jsonl
+    dev: 0
+    test: 1000
+  musique:
+    input: experiments/data/normalized/musique.jsonl
+    dev: 0
+    test: 1000
+  bamboogle:
+    input: experiments/data/normalized/bamboogle.jsonl
+    dev: 0
+    test: 125
+  morehopqa:
+    input: experiments/data/normalized/morehopqa.jsonl
+    dev: 0
+    test: 1000
+    require_parent_mapping: true
+splits:
+  directory: experiments/data/splits
+  duplicate_policy: exclude_cross_dataset_children
+  exact_question_deduplication: true
+ablations:
+  model_roles: [qwen_plus, gemini_flash, gpt4o_mini, kimi]
+  subquestion_counts: [1, 2, 3, 4, 6, adaptive]
+  rewriting_conditions: [D0W0, D0W1, D1W0, D1W1]
+  retrieval_ratios: [[0, 10], [1, 9], [2, 8], [3, 7], [4, 6], [5, 5], [6, 4], [7, 3], [8, 2], [9, 1], [10, 0]]
+  transfer_hosts: [rag, self_ask, crag_local, react, ircot, search_o1, tir, search_r1, zerosearch_base, zerosearch_instruct]
+  transfer_conditions: [[false, false], [true, false], [false, true], [true, true]]
+audit:
+  output_root: experiments/annotations
+  model_labels_are_human: false
+  independent_human_annotators: 2
+  adjudicator_required_on_disagreement: true
+  frontier_threshold: null
+  small_threshold: null
+  rejected_sample_probability: 0.2
+  sampling_seed: 17
+output:
+  runs: experiments/runs/studies

@@ -1,20 +1,10 @@
-# Python
+.venv*/
 __pycache__/
-*.py[cod]
-*.egg-info/
-venv/
-.venv/
-
-# Runtime artifacts (do not commit — contain run logs/results)
-results/
-logs/
-*.log
-
-# OS
+*.pyc
 .DS_Store
-Thumbs.db
-
-# Editor
-.vscode/
-.idea/
-*.swp
+experiments/runs/
+experiments/data/
+experiments/indexes/
+experiments/local*.yaml
+experiments/annotations/private/
+tmp/

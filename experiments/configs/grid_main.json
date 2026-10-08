@@ -1,0 +1,194 @@
+[
+  {
+    "id": "direct",
+    "method": "direct",
+    "family": "main",
+    "implementation": "direct-answer JSON interface",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "cot",
+    "method": "cot",
+    "family": "main",
+    "implementation": "reason-before-answer JSON interface",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "tir",
+    "method": "tir",
+    "family": "main",
+    "implementation": null,
+    "blocked_reason": "TIR paper/code identity is unresolved",
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "rag",
+    "method": "rag",
+    "family": "main",
+    "implementation": "one-shot retrieved-context generation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "self_ask",
+    "method": "self_ask",
+    "family": "main",
+    "implementation": "follow-up-question JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "crag_local",
+    "method": "crag_local",
+    "family": "main",
+    "implementation": "corpus-constrained corrective retrieval adaptation, not original web-search CRAG",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "react",
+    "method": "react",
+    "family": "main",
+    "implementation": "reason/action JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "react_abstain",
+    "method": "react_abstain",
+    "family": "main",
+    "implementation": "reason/action JSON reimplementation with explicit abstention",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "ircot",
+    "method": "ircot",
+    "family": "main",
+    "implementation": "interleaved reasoning/retrieval JSON reimplementation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_o1",
+    "method": "search_o1",
+    "family": "main",
+    "implementation": "fixed-backbone search-tag and reason-in-documents adaptation",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "eara",
+    "method": "eara",
+    "family": "main",
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "r1_base",
+    "method": "r1_base",
+    "family": "main",
+    "implementation": "checkpoint-backed direct response; checkpoint mapping unresolved",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "r1_instruct",
+    "method": "r1_instruct",
+    "family": "main",
+    "implementation": "checkpoint-backed direct response; checkpoint mapping unresolved",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "search_r1",
+    "method": "search_r1",
+    "family": "main",
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_base",
+    "method": "zerosearch_base",
+    "family": "main",
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "zerosearch_instruct",
+    "method": "zerosearch_instruct",
+    "family": "main",
+    "implementation": "checkpoint-backed search-tag chat adapter; fidelity validation required",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  }
+]

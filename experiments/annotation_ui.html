@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EARA 独立证据盲审</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:1050px;margin:30px auto;padding:0 20px;background:#f5f6f8;color:#17202a}h1{font-size:25px}.card{background:white;padding:20px;margin:16px 0;border:1px solid #d8dee8;border-radius:10px}label{display:block;margin:12px 0}input,select,textarea,button{font:inherit;padding:8px;box-sizing:border-box}textarea{width:100%;min-height:65px}button{cursor:pointer;margin-right:12px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}.warning{color:#8b241b}.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}#progress{font-weight:600}article{border-top:1px solid #ddd;margin-top:14px;padding-top:10px}
+</style>
+</head>
+<body>
+<h1>EARA 独立证据盲审</h1>
+<p>只根据展示的证据判断候选答案是否得到完整支持，不使用外部知识或搜索。答案正确不等于证据充分。所有必要的多跳联系都应得到支持。</p>
+<p class="warning">这是供真实人工评审使用的离线表单。请勿将模型生成的标签填写为人工结果，也不要查看其他评审员的答案。</p>
+<div class="card row"><label>任务文件 <input id="file" type="file" accept=".jsonl"></label><label>匿名评审员编号 <input id="annotator" autocomplete="off" placeholder="例如 reviewer_A"></label><span id="progress">尚未载入任务</span></div>
+<section id="task" class="card" hidden><h2 id="question"></h2><p><strong>候选答案：</strong><span id="candidate"></span></p><div id="passages"></div></section>
+<section id="form" class="card" hidden>
+<label>证据是否充分？<select id="label"><option value="">请选择</option><option value="sufficient">充分</option><option value="insufficient">不充分</option><option value="uncertain">无法判断</option></select></label>
+<label>支持证据 ID（以英文逗号分隔）<input id="support" style="width:100%"></label>
+<label>缺失的事实联系<textarea id="missing"></textarea></label>
+<label>冲突或矛盾<textarea id="contradictions"></textarea></label>
+<label>简短说明<textarea id="rationale"></textarea></label>
+<label><input type="checkbox" id="attested"> 我本人独立阅读了以上证据并完成判断，未复制模型或其他评审员的标签。</label>
+<div class="row"><button id="previous">上一条</button><button id="next">保存并下一条</button><button id="export">导出本人已完成的标签</button></div>
+<p id="message" role="status"></p>
+</section>
+<script>
+let tasks=[],position=0,labels={},started=0;
+const element=id=>document.getElementById(id);
+function show(){const task=tasks[position];element('task').hidden=false;element('form').hidden=false;element('question').textContent=task.question;element('candidate').textContent=task.candidate;element('progress').textContent=`${position+1} / ${tasks.length}；已记录 ${Object.keys(labels).length}`;element('passages').replaceChildren();for(const passage of task.passages){const article=document.createElement('article');const heading=document.createElement('strong');heading.textContent=`[${passage.id}] ${passage.title}`;const text=document.createElement('pre');text.textContent=passage.text;article.append(heading,text);element('passages').append(article)}const saved=labels[task.task_id]||{};element('label').value=saved.label||'';element('support').value=(saved.supporting_passage_ids||[]).join(', ');element('missing').value=saved.missing_links||'';element('contradictions').value=saved.contradictions||'';element('rationale').value=saved.rationale||'';element('attested').checked=saved.independent_review_attested||false;element('message').textContent='';started=performance.now()}
+function save(){const task=tasks[position];const label=element('label').value;const annotator=element('annotator').value.trim();if(!annotator||!label||!element('attested').checked){element('message').textContent='请填写评审员编号、判断，并确认本人独立审核。';return false}const identifiers=element('support').value.split(',').map(value=>value.trim()).filter(Boolean);const valid=new Set(task.passages.map(passage=>passage.id));if(identifiers.some(identifier=>!valid.has(identifier))){element('message').textContent='支持证据 ID 必须来自当前展示的证据。';return false}if(label==='sufficient'&&!identifiers.length){element('message').textContent='判断为充分时请至少标记一条支持证据。';return false}const previous=labels[task.task_id];labels[task.task_id]={task_id:task.task_id,label_source:'human',annotator_id:annotator,label,supporting_passage_ids:identifiers,missing_links:element('missing').value,contradictions:element('contradictions').value,rationale:element('rationale').value,independent_review_attested:true,annotation_seconds:(previous?.annotation_seconds||0)+(performance.now()-started)/1000,timestamp:new Date().toISOString()};started=performance.now();return true}
+element('file').addEventListener('change',async event=>{try{const rows=(await event.target.files[0].text()).split(/\r?\n/).filter(line=>line.trim()).map(line=>JSON.parse(line));if(!rows.length||rows.some(row=>!row.task_id||!row.question||!Array.isArray(row.passages)||'score' in row||'reviewer' in row||'answers' in row)){throw new Error('请载入 make-audit 导出的盲审 tasks_A/B.jsonl，而不是带模型标签的文件。')}tasks=rows;position=0;labels={};show()}catch(error){alert(error.message)}});
+element('next').addEventListener('click',()=>{if(save()){if(position<tasks.length-1){position++;show()}else{element('message').textContent='已到最后一条，请导出标签文件。'}}});
+element('previous').addEventListener('click',()=>{if(position>0){if(element('label').value&&!save())return;position--;show()}});
+element('export').addEventListener('click',()=>{if(!save())return;const rows=Object.values(labels);const blob=new Blob([rows.map(row=>JSON.stringify(row)).join('\n')+'\n'],{type:'application/x-ndjson'});const link=document.createElement('a');const url=URL.createObjectURL(blob);link.href=url;link.download='human_labels.jsonl';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);element('message').textContent=`已导出 ${rows.length}/${tasks.length} 条。未完成的任务不会伪造标签。`});
+</script>
+</body>
+</html>

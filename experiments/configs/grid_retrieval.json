@@ -1,0 +1,178 @@
+[
+  {
+    "id": "bm25_0_dense_10",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      0,
+      10
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_1_dense_9",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      1,
+      9
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_2_dense_8",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      2,
+      8
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_3_dense_7",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      3,
+      7
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_4_dense_6",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      4,
+      6
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_5_dense_5",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      5,
+      5
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_6_dense_4",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      6,
+      4
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_7_dense_3",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      7,
+      3
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_8_dense_2",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      8,
+      2
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_9_dense_1",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      9,
+      1
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  {
+    "id": "bm25_10_dense_0",
+    "method": "eara",
+    "family": "retrieval",
+    "retrieval_weights": [
+      10,
+      0
+    ],
+    "implementation": "CRP/CAC stateful controller",
+    "blocked_reason": null,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  }
+]
